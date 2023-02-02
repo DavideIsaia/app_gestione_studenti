@@ -4,6 +4,7 @@ import 'screens/overview_screen.dart';
 import './providers/auth.dart';
 import './screens/auth_screen.dart';
 import './screens/users_screen.dart';
+import './screens/user_detail_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
             home: authValue.isAuth ? UsersScreen() : AuthScreen(),
             routes: {
               UsersScreen.routeName: (context) => UsersScreen(),
+              UserDetailScreen.routeName: (context) => UserDetailScreen(),
             },
           ),
         ));

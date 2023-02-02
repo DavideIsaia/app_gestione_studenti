@@ -8,6 +8,7 @@ import '../providers/user.dart';
 import '../providers/users.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import './user_detail_screen.dart';
 
 class UsersScreen extends StatefulWidget {
   static const routeName = '/utenti';
@@ -51,8 +52,6 @@ class _UsersScreenState extends State<UsersScreen> {
 
   Future<void> fetchAndSetUsers() async {
     var url = 'https://formazione-reactive-api-rest.herokuapp.com/utenti';
-    // mancantiLibreria/{user}
-    // assegnaLinguaggi POST
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body);
@@ -205,9 +204,17 @@ class _UsersScreenState extends State<UsersScreen> {
       body: ListView.builder(
         itemCount: _students.length,
         itemBuilder: (context, i) {
-          return ListTile(
-            title: Text(_students[i].cognome),
-            subtitle: Text(_students[i].nome),
+          return Card(
+            child: ListTile(
+              title: Text(_students[i].cognome),
+              subtitle: Text(_students[i].nome),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  UserDetailScreen.routeName,
+                  arguments: _students[i].username,
+                );
+              },
+            ),
           );
         },
       ),

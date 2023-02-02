@@ -6,10 +6,10 @@ class Linguaggio with ChangeNotifier {
   final String nome;
   final String descrizione;
   final String logo;
-  final double progresso;
-  final Video video;
-  final Documento documenti;
-  final Collegamento collegamenti;
+  final int progresso;
+  // final Video video;
+  // final Documento documenti;
+  // final Collegamento collegamenti;
 
   Linguaggio({
     @required this.id,
@@ -17,9 +17,9 @@ class Linguaggio with ChangeNotifier {
     @required this.descrizione,
     @required this.logo,
     @required this.progresso,
-    @required this.video,
-    @required this.documenti,
-    @required this.collegamenti,
+    // @required this.video,
+    // @required this.documenti,
+    // @required this.collegamenti,
   });
 }
 
