@@ -28,7 +28,7 @@ class _UsersScreenState extends State<UsersScreen> {
     return menuItems;
   }
 
-  String selectedValue = "Ruolo";
+  String selectedValue = "FRADM";
 
   List<User> get students {
     return [..._students];
@@ -91,35 +91,74 @@ class _UsersScreenState extends State<UsersScreen> {
             child: Card(
               elevation: 5,
               child: Container(
-                padding: EdgeInsets.all(30),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                padding: EdgeInsets.all(10),
+                child: Column(children: [
+                  Row(
                     children: [
-                      TextField(
-                          decoration: InputDecoration(labelText: 'Nome'),
-                          onSubmitted: (_) => _submitData),
-                      TextField(
-                          decoration: InputDecoration(labelText: 'Cognome'),
-                          onSubmitted: (_) => _submitData),
-                      TextField(
-                          decoration: InputDecoration(labelText: 'Username'),
-                          onSubmitted: (_) => _submitData),
-                      TextField(
-                          decoration: InputDecoration(labelText: 'Password'),
-                          onSubmitted: (_) => _submitData),
-                      DropdownButtonFormField(
-                          validator: (value) =>
-                              value == null ? "Selezionare un ruolo" : null,
-                          value: selectedValue,
-                          onChanged: (String newValue) {
-                            setState(() {
-                              selectedValue = newValue;
-                            });
-                          },
-                          items: dropdownItems),
-                      ElevatedButton(
-                          onPressed: _submitData, child: Text('Crea'))
-                    ]),
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: TextField(
+                              decoration: InputDecoration(labelText: 'Nome'),
+                              onSubmitted: (_) => _submitData),
+                        ),
+                      ),
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: TextField(
+                              decoration: InputDecoration(labelText: 'Cognome'),
+                              onSubmitted: (_) => _submitData),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: TextField(
+                            decoration: InputDecoration(labelText: 'Username'),
+                            onSubmitted: (_) => _submitData),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(labelText: 'Password'),
+                            onSubmitted: (_) => _submitData),
+                      ),
+                    ),
+                  ]),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: DropdownButtonFormField(
+                              decoration: InputDecoration(labelText: 'Ruolo'),
+                              validator: (value) =>
+                                  value == null ? "Selezionare un ruolo" : null,
+                              value: selectedValue,
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  selectedValue = newValue;
+                                });
+                              },
+                              items: dropdownItems),
+                        ),
+                      ),
+                      Flexible(
+                          child: Padding(
+                        padding: const EdgeInsets.fromLTRB(65, 5, 0, 0),
+                        child: ElevatedButton(
+                            onPressed: _submitData, child: Text('Crea')),
+                      ))
+                    ],
+                  ),
+                ]),
               ),
             ),
           );
