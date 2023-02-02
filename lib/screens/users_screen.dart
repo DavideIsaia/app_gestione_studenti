@@ -20,6 +20,16 @@ class _UsersScreenState extends State<UsersScreen> {
   var _isLoading = false;
   List<User> _students = [];
 
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("FRADM"), value: "FRADM"),
+      DropdownMenuItem(child: Text("FRUSR"), value: "FRUSR"),
+    ];
+    return menuItems;
+  }
+
+  String selectedValue = "Ruolo";
+
   List<User> get students {
     return [..._students];
   }
@@ -66,7 +76,10 @@ class _UsersScreenState extends State<UsersScreen> {
     }
   }
 
-  void _submitData() {}
+  void _submitData() {
+    //per far chiudere da solo il foglio di input dopo che premiamo invio
+    Navigator.of(context).pop();
+  }
 
   void _startAddUser(BuildContext ctx) {
     showModalBottomSheet(
@@ -78,38 +91,32 @@ class _UsersScreenState extends State<UsersScreen> {
             child: Card(
               elevation: 5,
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(30),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       TextField(
                           decoration: InputDecoration(labelText: 'Nome'),
-                          onSubmitted: (_) => _submitData
-                          // onChanged: (val) {
-                          //   titleInput = val;
-                          // },
-                          ),
+                          onSubmitted: (_) => _submitData),
                       TextField(
                           decoration: InputDecoration(labelText: 'Cognome'),
-                          onSubmitted: (_) => _submitData
-                          // onChanged: (val) {
-                          //   titleInput = val;
-                          // },
-                          ),
+                          onSubmitted: (_) => _submitData),
                       TextField(
                           decoration: InputDecoration(labelText: 'Username'),
-                          onSubmitted: (_) => _submitData
-                          // onChanged: (val) {
-                          //   titleInput = val;
-                          // },
-                          ),
+                          onSubmitted: (_) => _submitData),
                       TextField(
                           decoration: InputDecoration(labelText: 'Password'),
-                          onSubmitted: (_) => _submitData
-                          // onChanged: (val) {
-                          //   titleInput = val;
-                          // },
-                          ),
+                          onSubmitted: (_) => _submitData),
+                      DropdownButtonFormField(
+                          validator: (value) =>
+                              value == null ? "Selezionare un ruolo" : null,
+                          value: selectedValue,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              selectedValue = newValue;
+                            });
+                          },
+                          items: dropdownItems),
                       ElevatedButton(
                           onPressed: _submitData, child: Text('Crea'))
                     ]),
@@ -120,7 +127,7 @@ class _UsersScreenState extends State<UsersScreen> {
   }
 
   Future<void> addUser(User user) async {
-    const url = 'https://formazione-reactive-api-rest.herokuapp.com/';
+    const url = '';
     try {
       final response = await http.post(url,
           body: json.encode({

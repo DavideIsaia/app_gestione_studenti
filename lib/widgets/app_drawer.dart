@@ -13,20 +13,11 @@ class AppDrawer extends StatelessWidget {
             title: Text('Benvenuto!'),
             automaticallyImplyLeading: false,
           ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Homepage'),
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed('/');
-            },
-          ),
-          Divider(),
           ListTile(
             leading: Icon(Icons.people),
             title: Text('Utenti'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(UsersScreen.routeName);
+              Navigator.of(context).pushReplacementNamed('/');
               ;
             },
           ),
