@@ -7,12 +7,14 @@ class User with ChangeNotifier {
   final String nome;
   final String cognome;
   final String password;
+  final String email;
 
   User({
     @required this.username,
     @required this.ruolo,
     @required this.nome,
     @required this.cognome,
-    @required this.password
+    @required this.password,
+    @required this.email,
   });
 }

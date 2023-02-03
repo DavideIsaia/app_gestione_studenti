@@ -29,7 +29,7 @@ class _UsersScreenState extends State<UsersScreen> {
     return menuItems;
   }
 
-  String selectedValue = "FRADM";
+  String selectedValue = "FRUSR";
 
   List<User> get students {
     return [..._students];
@@ -76,6 +76,7 @@ class _UsersScreenState extends State<UsersScreen> {
   }
 
   void _submitData() {
+    var url = 'https://formazione-reactive-api-rest.herokuapp.com/creaUtente';
     //per far chiudere da solo il foglio di input dopo che premiamo invio
     Navigator.of(context).pop();
   }
@@ -135,7 +136,15 @@ class _UsersScreenState extends State<UsersScreen> {
                     children: [
                       Flexible(
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
+                          child: TextField(
+                              decoration: InputDecoration(labelText: 'Email'),
+                              onSubmitted: (_) => _submitData),
+                        ),
+                      ),
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
                           child: DropdownButtonFormField(
                               decoration: InputDecoration(labelText: 'Ruolo'),
                               validator: (value) =>
@@ -151,7 +160,7 @@ class _UsersScreenState extends State<UsersScreen> {
                       ),
                       Flexible(
                           child: Padding(
-                        padding: const EdgeInsets.fromLTRB(65, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(35, 5, 0, 0),
                         child: ElevatedButton(
                             onPressed: _submitData, child: Text('Crea')),
                       ))
@@ -174,6 +183,7 @@ class _UsersScreenState extends State<UsersScreen> {
             "username": user.username,
             "password": user.password,
             "ruolo": user.ruolo,
+            "email": user.email,
           }));
       final newUser = User(
         nome: user.nome,
@@ -181,6 +191,7 @@ class _UsersScreenState extends State<UsersScreen> {
         username: user.username,
         password: user.password,
         ruolo: user.ruolo,
+        email: user.email,
       );
       _students.add(newUser);
       // _students.insert(0, newUser); // lo inserisce all'inizio della lista
