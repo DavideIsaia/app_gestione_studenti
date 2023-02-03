@@ -68,8 +68,11 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
             child: ListTile(
               leading: SizedBox(
                 height: 100.0,
-                width: 100.0,
-                child: Image.asset(_linguaggi[i].logo),
+                width: 200.0,
+                child: Image.network(
+                  "https://formazionereactive.herokuapp.com/assets/img/linguaggi/${_linguaggi[i].logo}",
+                  fit: BoxFit.contain,
+                ),
               ),
               title: Text(_linguaggi[i].nome),
               // subtitle: Text(_linguaggi[i].descrizione),
