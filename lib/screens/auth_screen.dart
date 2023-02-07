@@ -190,7 +190,6 @@ class _AuthCardState extends State<AuthCard>
               children: <Widget>[
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Username'),
-                  keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Inserire un username valido.';

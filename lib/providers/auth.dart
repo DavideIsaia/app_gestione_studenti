@@ -17,10 +17,8 @@ class Auth with ChangeNotifier {
     final response = await http.post(url);
     print(response.body);
     if (response.body == 'FRMOB') {
-      // print('bentornato admin!');
       loggedIn = true;
     } else {
-      // print('non sei un admin.');
       loggedIn = false;
     }
     isLogged(loggedIn);
